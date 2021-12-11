@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
-import ListErrors from './ListErrors';
+import ListErrors from '../ListErrors/ListErrors';
 import React from 'react';
-import agent from '../agent';
+import agent from '../../agent';
 import { connect } from 'react-redux';
 import {
   UPDATE_FIELD_AUTH,
   LOGIN,
   LOGIN_PAGE_UNLOADED,
-} from '../constants/actionTypes';
+} from '../../constants/actionTypes';
+import loginStyles from './Login.module.scss';
 
 const mapStateToProps = (state) => ({ ...state.auth });
 
