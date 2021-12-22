@@ -1,0 +1,7 @@
+export const ROUTE_HOME = '/'
+export const ROUTE_LOGIN = '/login'
+export const ROUTE_REGISTER = '/register'
+export const ROUTE_EDITOR = '/editor'
+export const ROUTE_ARTICLE = '/article'
+export const ROUTE_SETTINGS = '/settings'
+export const ROUTE_FAVORITES = '/favorites'

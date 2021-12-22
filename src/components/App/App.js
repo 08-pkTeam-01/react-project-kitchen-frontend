@@ -1,9 +1,9 @@
 import agent from '../../agent';
 import Header from '../Header/Header';
 import React from 'react';
-import { connect } from 'react-redux';
-import { APP_LOAD, REDIRECT } from '../../constants/actionTypes';
-import { Route, Switch } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {APP_LOAD, REDIRECT} from '../../constants/actionTypes';
+import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import Article from '../Article';
 import Editor from '../Editor/Editor';
 import Home from '../Home';
@@ -12,74 +12,83 @@ import Profile from '../Profile/Profile';
 import ProfileFavorites from '../ProfileFavorites/ProfileFavorites';
 import Register from '../Register/Register';
 import Settings from '../Settings/Settings';
-import { store } from '../../store';
-import { push } from 'react-router-redux';
+import {store} from '../../store';
+import {push} from 'react-router-redux';
 import appStyles from './App.module.scss';
+import {
+    ROUTE_ARTICLE,
+    ROUTE_EDITOR,
+    ROUTE_FAVORITES,
+    ROUTE_HOME,
+    ROUTE_LOGIN,
+    ROUTE_REGISTER,
+    ROUTE_SETTINGS
+} from "../../utils/consts";
 
 const mapStateToProps = (state) => {
-  return {
-    appLoaded: state.common.appLoaded,
-    appName: state.common.appName,
-    currentUser: state.common.currentUser,
-    redirectTo: state.common.redirectTo,
-  };
+    return {
+        appLoaded: state.common.appLoaded,
+        appName: state.common.appName,
+        currentUser: state.common.currentUser,
+        redirectTo: state.common.redirectTo,
+    };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoad: (payload, token) =>
-    dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
-  onRedirect: () => dispatch({ type: REDIRECT }),
+    onLoad: (payload, token) =>
+        dispatch({type: APP_LOAD, payload, token, skipTracking: true}),
+    onRedirect: () => dispatch({type: REDIRECT}),
 });
 
 class App extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.redirectTo) {
-      // this.context.router.replace(nextProps.redirectTo);
-      store.dispatch(push(nextProps.redirectTo));
-      this.props.onRedirect();
-    }
-  }
-
-  componentWillMount() {
-    const token = window.localStorage.getItem('jwt');
-    if (token) {
-      agent.setToken(token);
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.redirectTo) {
+            // this.context.router.replace(nextProps.redirectTo);
+            store.dispatch(push(nextProps.redirectTo));
+            this.props.onRedirect();
+        }
     }
 
-    this.props.onLoad(token ? agent.Auth.current() : null, token);
-  }
+    componentWillMount() {
+        const token = window.localStorage.getItem('jwt');
+        if (token) {
+            agent.setToken(token);
+        }
 
-  render() {
-    if (this.props.appLoaded) {
-      return (
-        <div>
-          <Header
-            appName={this.props.appName}
-            currentUser={this.props.currentUser}
-          />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/login' component={Login} />
-            <Route path='/register' component={Register} />
-            <Route path='/editor/:slug' component={Editor} />
-            <Route path='/editor' component={Editor} />
-            <Route path='/article/:id' component={Article} />
-            <Route path='/settings' component={Settings} />
-            <Route path='/@:username/favorites' component={ProfileFavorites} />
-            <Route path='/@:username' component={Profile} />
-          </Switch>
-        </div>
-      );
+        this.props.onLoad(token ? agent.Auth.current() : null, token);
     }
-    return (
-      <div>
-        <Header
-          appName={this.props.appName}
-          currentUser={this.props.currentUser}
-        />
-      </div>
-    );
-  }
+
+    render() {
+        if (this.props.appLoaded) {
+            return (
+                <div>
+                    <Header
+                        appName={this.props.appName}
+                        currentUser={this.props.currentUser}
+                    />
+                    <Routes>
+                        <Route path={ROUTE_HOME} element={<Home/>}/>
+                        <Route path={ROUTE_LOGIN} element={<Login/>}/>
+                        <Route path={ROUTE_REGISTER} element={<Register/>}/>
+                        <Route path={ROUTE_EDITOR+'/:slug'} element={<Editor/>}/>
+                        <Route path={ROUTE_EDITOR} element={<Editor/>}/>
+                        <Route path={ROUTE_ARTICLE+'/:id'} element={<Article/>}/>
+                        <Route path={ROUTE_SETTINGS} element={<Settings/>}/>
+                        <Route path={'/@:username'+ROUTE_FAVORITES} element={<ProfileFavorites/>}/>
+                        <Route path='/@:username' element={<Profile/>}/>
+                    </Routes>
+                </div>
+            );
+        }
+        return (
+            <div>
+                <Header
+                    appName={this.props.appName}
+                    currentUser={this.props.currentUser}
+                />
+            </div>
+        );
+    }
 }
 
 // App.contextTypes = {
