@@ -15,6 +15,8 @@ import ToDelete from './ToDelete';
 
 const Promise = global.Promise;
 
+const test = ''
+
 const mapStateToProps = state => ({
   ...state.home,
   appName: state.common.appName,
@@ -50,11 +52,10 @@ class Home extends React.Component {
 
         <Banner token={this.props.token} appName={this.props.appName} />
         <div className="container page">
-          
-          {/* THIS COMPONENT WILL BE DELETED THIS IS WELCOME */}
-          <ToDelete />
 
-          {/* <div className="row">
+
+
+         <div className="row">
             <MainView />
 
             <div className="col-md-3">
@@ -65,10 +66,9 @@ class Home extends React.Component {
                 <Tags
                   tags={this.props.tags}
                   onClickTag={this.props.onClickTag} />
-
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
 
       </div>
