@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  color: #0A0A0A;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 500;
+  background: #EC4926;
+
+  img {
+    height: 14px;
+    width: 14px;
+  }
+}
+
+.active {
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #EC4926;
+  }
+
+  &:active {
+    outline: none;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), #EC4926;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.disable {
+  background: #666666;
+}
