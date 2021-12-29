@@ -20,6 +20,7 @@ const NavItem = ({icon, title, link}) => {
     )
 }
 export const Header = ({appName, currentUser}) => {
+    //test branch
     return (
         <header className={headerStyles.wrapper}>
             <nav className={headerStyles.content}>
