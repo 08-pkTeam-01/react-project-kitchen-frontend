@@ -1,84 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import headerStyles from './Header.module.scss';
+import {ROUTE_EDITOR, ROUTE_HOME, ROUTE_LOGIN, ROUTE_SETTINGS} from "../../utils/consts";
+import homeIcon from '../../images/icons/home.png'
+import editorIcon from '../../images/icons/editor.png'
+import settingsIcon from '../../images/icons/settings.png'
+import avatarIcon from '../../images/icons/avatar.png'
+import entranceIcon from '../../images/icons/entrance.png'
 
-const LoggedOutView = (props) => {
-  if (!props.currentUser) {
+const NavItem = ({icon, title, link}) => {
+    const classNames = ({isActive}) => headerStyles.link + ' ' + (isActive && headerStyles.active)
     return (
-      <ul className='nav navbar-nav pull-xs-right'>
-        <li className='nav-item'>
-          <Link to='/' className='nav-link'>
-            Home
-          </Link>
+        <li className={headerStyles.nav_item}>
+            <NavLink to={link} className={classNames}>
+                <img src={icon} alt={title}/>
+                <span>{title}</span>
+            </NavLink>
         </li>
-
-        <li className='nav-item'>
-          <Link to='/login' className='nav-link'>
-            Sign in
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link to='/register' className='nav-link'>
-            Sign up
-          </Link>
-        </li>
-      </ul>
-    );
-  }
-  return null;
-};
-
-const LoggedInView = (props) => {
-  if (props.currentUser) {
+    )
+}
+export const Header = ({appName, currentUser}) => {
     return (
-      <ul className='nav navbar-nav pull-xs-right'>
-        <li className='nav-item'>
-          <Link to='/' className='nav-link'>
-            Home
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link to='/editor' className='nav-link'>
-            <i className='ion-compose'></i>&nbsp;New Post
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link to='/settings' className='nav-link'>
-            <i className='ion-gear-a'></i>&nbsp;Settings
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link to={`/@${props.currentUser.username}`} className='nav-link'>
-            <span>Hello, {props.currentUser.username}</span>
-          </Link>
-        </li>
-      </ul>
+        <header className={headerStyles.wrapper}>
+            <nav className={headerStyles.content}>
+                <Link to={ROUTE_HOME} className={headerStyles.link}>
+                    <h1>{appName.toLowerCase()}</h1>
+                </Link>
+                <ul className={headerStyles.navigation}>
+                    <NavItem icon={homeIcon} title='Главная' link={ROUTE_HOME}/>
+                    {!currentUser && (
+                        <NavItem icon={entranceIcon} title='Войти' link={ROUTE_LOGIN}/>
+                    )}
+                    {currentUser && (
+                        <>
+                            <NavItem icon={editorIcon} title='Новая запись' link={ROUTE_EDITOR}/>
+                            <NavItem icon={settingsIcon} title='Настройки' link={ROUTE_SETTINGS}/>
+                            <NavItem icon={avatarIcon} title={currentUser.username}
+                                      link={`/@${currentUser.username}`}/>
+                        </>
+                    )}
+                </ul>
+            </nav>
+        </header>
     );
-  }
-
-  return null;
-};
-
-class Header extends React.Component {
-  render() {
-    return (
-      <nav className='navbar navbar-light'>
-        <div className='container'>
-          <Link to='/' className='navbar-brand'>
-            {this.props.appName.toLowerCase()}
-          </Link>
-
-          <LoggedOutView currentUser={this.props.currentUser} />
-
-          <LoggedInView currentUser={this.props.currentUser} />
-        </div>
-      </nav>
-    );
-  }
 }
 
 export default Header;
+
