@@ -4,11 +4,11 @@ import React from 'react';
 
 const ArticleList = (props) => {
     if (!props.articles) {
-        return <div className='article-preview'>Loading...</div>;
+        return <div className='article-preview'>Загрузка...</div>;
     }
 
     if (props.articles.length === 0) {
-        return <div className='article-preview'>No articles are here... yet.</div>;
+        return <div className='article-preview'>Здесь пусто... пока что.</div>;
     }
 
     return (

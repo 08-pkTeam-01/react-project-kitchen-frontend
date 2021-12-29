@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  border-bottom: 1px solid #212531;
+}
+
+.item {
+  border: none;
+  color: #666666
+}
+
+.itemActive {
+  border-bottom: 1px solid #EC4926;
+  color: white;
+}
+
+
+.button {
+  background: none;
+  border: none;
+  padding: 16px 24px;
+
+  &:focus {
+    outline: none;
+  }
+}
+

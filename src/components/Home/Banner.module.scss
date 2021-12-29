@@ -1,0 +1,31 @@
+.wrapperContainer {
+  background: black;
+  box-shadow: inset 0 8px 8px -8px rgb(0 0 0 / 30%), inset 0 -8px 8px -8px rgb(0 0 0 / 30%);
+  color: #fff;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  border-bottom: 1px solid #212531
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-family: Neue Machina, sans-serif, Arial;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 64px;
+}
+
+.description {
+  margin: 0 auto;
+  font-family: Neue Machina, sans-serif, Arial;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 28px;
+}

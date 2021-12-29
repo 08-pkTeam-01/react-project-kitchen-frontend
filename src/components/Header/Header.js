@@ -20,12 +20,11 @@ const NavItem = ({icon, title, link}) => {
     )
 }
 export const Header = ({appName, currentUser}) => {
-    //test branch
     return (
         <header className={headerStyles.wrapper}>
             <nav className={headerStyles.content}>
                 <Link to={ROUTE_HOME} className={headerStyles.link}>
-                    <h1>{appName.toLowerCase()}</h1>
+                    <h1>{appName}</h1>
                 </Link>
                 <ul className={headerStyles.navigation}>
                     <NavItem icon={homeIcon} title='Главная' link={ROUTE_HOME}/>
