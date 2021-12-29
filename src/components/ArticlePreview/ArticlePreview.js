@@ -6,7 +6,6 @@ import {
   ARTICLE_FAVORITED,
   ARTICLE_UNFAVORITED,
 } from '../../constants/actionTypes';
-import articlePreviewStyles from './ArticlePreview.module.scss';
 
 const FAVORITED_CLASS = 'btn btn-sm btn-primary';
 const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
