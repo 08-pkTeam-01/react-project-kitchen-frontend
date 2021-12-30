@@ -19,6 +19,7 @@
       text-decoration: none;
       display: flex;
       gap: 9px;
+      align-items: center;
       @media  (max-width: 860px) {
         gap: 4px;
       }
@@ -28,6 +29,7 @@
         font-weight: 800;
         font-size: 24px;
         margin: 0;
+        font-family: Neue Machina, sans-serif, Arial;
       }
       img {
         height: 20px;

@@ -61,7 +61,7 @@ class App extends React.Component {
     render() {
         if (this.props.appLoaded) {
             return (
-                <div>
+                <>
                     <Header
                         appName={this.props.appName}
                         currentUser={this.props.currentUser}
@@ -77,7 +77,7 @@ class App extends React.Component {
                         <Route path={'/@:username'+ROUTE_FAVORITES} element={<ProfileFavorites/>}/>
                         <Route path='/@:username' element={<Profile/>}/>
                     </Routes>
-                </div>
+                </>
             );
         }
         return (
