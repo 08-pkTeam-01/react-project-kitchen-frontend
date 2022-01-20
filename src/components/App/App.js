@@ -1,7 +1,7 @@
 import agent from '../../agent';
 import Header from '../Header/Header';
 import React from 'react';
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 import {APP_LOAD, REDIRECT} from '../../constants/actionTypes';
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import Article from '../Article';
@@ -13,7 +13,8 @@ import ProfileFavorites from '../ProfileFavorites/ProfileFavorites';
 import Register from '../Register/Register';
 import Settings from '../Settings/Settings';
 import {store} from '../../store';
-import {push} from 'react-router-redux';
+import {push} from 'connected-react-router';
+
 import appStyles from './App.module.scss';
 import {
     ROUTE_ARTICLE,
@@ -70,11 +71,11 @@ class App extends React.Component {
                         <Route path={ROUTE_HOME} element={<Home/>}/>
                         <Route path={ROUTE_LOGIN} element={<Login/>}/>
                         <Route path={ROUTE_REGISTER} element={<Register/>}/>
-                        <Route path={ROUTE_EDITOR+'/:slug'} element={<Editor/>}/>
+                        <Route path={ROUTE_EDITOR + '/:slug'} element={<Editor/>}/>
                         <Route path={ROUTE_EDITOR} element={<Editor/>}/>
-                        <Route path={ROUTE_ARTICLE+'/:id'} element={<Article/>}/>
+                        <Route path={ROUTE_ARTICLE + '/:id'} element={<Article/>}/>
                         <Route path={ROUTE_SETTINGS} element={<Settings/>}/>
-                        <Route path={'/@:username'+ROUTE_FAVORITES} element={<ProfileFavorites/>}/>
+                        <Route path={'/@:username' + ROUTE_FAVORITES} element={<ProfileFavorites/>}/>
                         <Route path='/@:username' element={<Profile/>}/>
                     </Routes>
                 </>
